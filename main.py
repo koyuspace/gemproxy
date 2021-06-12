@@ -39,7 +39,7 @@ def index():
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
             parsedmd += e+"\n"
-    html = str(markdown(parsedmd, extensions=['fenced_code']))
+    html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
     favico = "📄"
     try:
         favurl = "//geminispace.info/favicon.txt"
@@ -131,7 +131,7 @@ def defr(url):
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
                     parsedmd += e+"\n"
-            html = str(markdown(parsedmd, extensions=['fenced_code']))
+            html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
             head = template("head.tpl")+template("proxyui", favicon=favico)
             f = open("tail.tpl", "r")
             tail = f.read()
