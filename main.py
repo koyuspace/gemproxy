@@ -29,7 +29,7 @@ def index():
     response.headers['Access-Control-Allow-Origin'] = '*'
     req = ignition.request(rooturl)
     rep = str(req.data())
-    body = rep.replace("  ", " ").replace("\t", " ")
+    body = rep
     lines = body.split("\n")
     parsedmd = ""
     for e in lines:
@@ -39,7 +39,7 @@ def index():
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
             parsedmd += e+"\n"
-    parsedhtml = str(markdown(parsedmd))
+    parsedhtml = str(markdown(parsedmd, extensions=['fenced_code']))
     htmlines = parsedhtml.split("\n")
     html = ""
     for eh in htmlines:
@@ -139,7 +139,7 @@ def defr(url):
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
                     parsedmd += e+"\n"
-            parsedhtml = str(markdown(parsedmd))
+            parsedhtml = str(markdown(parsedmd, extensions=['fenced_code']))
             htmlines = parsedhtml.split("\n")
             html = ""
             for eh in htmlines:

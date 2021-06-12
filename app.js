@@ -11,15 +11,6 @@ $(document).ready(function() {
     if (localStorage.getItem("menu-enabled") === null) {
         localStorage.setItem("menu-enabled", "false");
     }
-    //Some exceptions
-    $("code").each(function() {
-        if ($(this).html().includes("koyu.space Gemini")) {
-            $(this).hide();
-        }
-        if ($(this).html().includes("jgs")) {
-            $(this).hide();
-        }
-    });
     //Page title
     var title = $("h1").html();
     document.title = title+" – "+document.title;
@@ -96,6 +87,8 @@ $(document).ready(function() {
         var host = $("#addressbar").val().split("gemini://")[1].split("/")[0];
         $("#oneup").attr("href", "/"+host+"/");
     } */
+    //Proper URL handling
+    $("body").html($("body").html().replaceAll("href=\"/", "href=\""));
     //Table of Contents
     //Taken from https://medium.com/codefile/an-automatic-table-of-contents-generator-in-javascript-3f56220c9397
     var headers = document.getElementsByTagName("h2");
