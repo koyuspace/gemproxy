@@ -46,6 +46,10 @@ code > p {
   line-height: 0;
 }
 
+#content a {
+  display: block;
+}
+
 h2 {
   margin-top: 60px;
   margin-bottom: 0;
