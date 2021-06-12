@@ -88,7 +88,7 @@ $(document).ready(function() {
         $("#oneup").attr("href", "/"+host+"/");
     } */
     //Proper URL handling
-    $("body").html($("body").html().replaceAll("href=\"/", "href=\""));
+    $("#content").html($("#content").html().replaceAll("<a href=\"/", "<a href=\""));
     //Table of Contents
     //Taken from https://medium.com/codefile/an-automatic-table-of-contents-generator-in-javascript-3f56220c9397
     var headers = document.getElementsByTagName("h2");
