@@ -50,6 +50,10 @@ code > p {
   display: block;
 }
 
+#content {
+  word-wrap: break-word;
+}
+
 h2 {
   margin-top: 60px;
   margin-bottom: 0;
