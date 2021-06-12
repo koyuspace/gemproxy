@@ -49,15 +49,17 @@ $(document).ready(function() {
     //Article metadata below article title
     $("body").html($("body").html().replaceAll("<p>Posted on ", "<p class=\"published\">Posted on "));
     //Input handler
-    $("#inputtext").focus();
-    $("#inputtext").keypress((e) => {
-        if (e.which == 13) {
-            if ($("#inputtext").val().replaceAll(" ", "") !== "") {
-                location.href = location.href+"?"+$("#inputtext").val();
-                e.preventDefault();
+    window.setTimeout(() => {
+        $("#inputtext").focus();
+        $("#inputtext").keypress((e) => {
+            if (e.which == 13) {
+                if ($("#inputtext").val().replaceAll(" ", "") !== "") {
+                    location.href = location.href+"?"+$("#inputtext").val();
+                    e.preventDefault();
+                }
             }
-        }
-    });
+        });
+    }, 500);
     //Address bar handler
     $("#addressbar").keypress((e) => {
         if (e.which == 13) {

@@ -73,17 +73,14 @@ def defr(url):
         if url == "capcom/":
             redirect("/geminispace.info/"+url, code=302)
         if not "/" in url:
-            if request.query_string == "":
-                redirect("geminispace.info/"+url+"/", code=302)
+            req = ignition.request(rooturl+"geminispace.info/"+url+"/")
+            if str(req).split(" ")[0] != "50":
+                if request.query_string == "":
+                    redirect("geminispace.info/"+url+"/", code=302)
+                else:
+                    redirect("geminispace.info/"+url+"/?"+request.query_string)
             else:
-                redirect("geminispace.info/"+url+"/?"+request.query_string)
-        try:
-            req = ignition.request(rooturl+url)
-            if str(req).split(" ")[0].startswith("2"):
-                if not "/" in url[-1] and not "." in url[-4]:
-                    redirect(url+"/", code=302)
-        except:
-            pass
+                redirect("/"+url+"/", code=302)
         favurl = rooturl+url
         favurl = "//"+favurl.split("/")[2]+"/favicon.txt"
         response.headers['Access-Control-Allow-Origin'] = '*'
