@@ -43,6 +43,7 @@ a:hover {
 
 code > p {
   margin: 0;
+  line-height: 0;
 }
 
 h2 {
