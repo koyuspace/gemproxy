@@ -39,15 +39,7 @@ def index():
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
             parsedmd += e+"\n"
-    parsedhtml = str(markdown(parsedmd, extensions=['fenced_code']))
-    htmlines = parsedhtml.split("\n")
-    html = ""
-    for eh in htmlines:
-        if not "code>" in eh and not "<h" in eh and not "</h" in eh and not "ul>" in eh and not "li>" in eh:
-            html += "<p>"+eh+"</p>\n"
-        else:
-            html += eh+"\n"
-    html = html.replace("<p><code>", "<code>").replace("</code></p>", "</code>").replace("<p><p>", "<p>").replace("</p></p>", "</p>").replace("gemini://koyu.space/rockshow/", "https://tilde.club/~koyu/").replace("gemini://", "/")
+    html = str(markdown(parsedmd, extensions=['fenced_code']))
     favico = "📄"
     try:
         favurl = "//geminispace.info/favicon.txt"
@@ -139,15 +131,7 @@ def defr(url):
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
                     parsedmd += e+"\n"
-            parsedhtml = str(markdown(parsedmd, extensions=['fenced_code']))
-            htmlines = parsedhtml.split("\n")
-            html = ""
-            for eh in htmlines:
-                if not "code>" in eh and not "<h" in eh and not "</h" in eh and not "ul>" in eh and not "ol>" in eh and not "li>" in eh:
-                    html += "<p>"+eh+"</p>\n"
-                else:
-                    html += eh+"\n"
-            html = html.replace("<p><code>", "<code>").replace("</code></p>", "</code>").replace("<p><p>", "<p>").replace("</p></p>", "</p>").replace("gemini://koyu.space/rockshow/", "https://tilde.club/~koyu/").replace("gemini://", "/").replace("<p><strong><em>_</em></strong>_____`-.<em>/.</em>/</p>", "").replace("\\  \\", "").replace("```", "")
+            html = str(markdown(parsedmd, extensions=['fenced_code']))
             head = template("head.tpl")+template("proxyui", favicon=favico)
             f = open("tail.tpl", "r")
             tail = f.read()
