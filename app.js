@@ -86,6 +86,7 @@ $(document).ready(function() {
     //Proper URL handling
     var host = $("#addressbar").val().split("gemini://")[1].split("/")[0];
     $("#content").html($("#content").html().replaceAll("<a href=\"/", "<a href=\"/"+host+"/"));
+    $("#content").html($("#content")).html().replaceAll("<a href=\"/"+host+"//", "<a href=\"/");
     //Table of Contents
     //Taken from https://medium.com/codefile/an-automatic-table-of-contents-generator-in-javascript-3f56220c9397
     var headers = document.getElementsByTagName("h2");
