@@ -39,6 +39,7 @@ def index():
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
             parsedmd += e+"\n"
+    parsedmd = parsedmd.replace("``` ", "```\n")
     html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
     favico = "📄"
     try:
@@ -131,6 +132,7 @@ def defr(url):
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
                     parsedmd += e+"\n"
+            parsedmd = parsedmd.replace("``` ", "```\n")
             html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
             head = template("head.tpl")+template("proxyui", favicon=favico)
             f = open("tail.tpl", "r")
