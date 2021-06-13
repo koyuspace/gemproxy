@@ -75,12 +75,15 @@ def defr(url):
         if not "/" in url:
             req = ignition.request(rooturl+"geminispace.info/"+url+"/")
             if str(req).split(" ")[0] != "50":
-                if request.query_string == "":
+                if request.query_string == "" and str(req).split(" ")[0] == 10:
                     redirect("geminispace.info/"+url+"/", code=302)
                 else:
-                    redirect("geminispace.info/"+url+"/?"+request.query_string)
+                    redirect("geminispace.info/"+url+"?"+request.query_string)
             else:
-                redirect("/"+url+"/", code=302)
+                if request.query_string == "":
+                    redirect("/"+url+"/", code=302)
+                else:
+                    redirect("geminispace.info/"+url+"?"+request.query_string)
         favurl = rooturl+url
         favurl = "//"+favurl.split("/")[2]+"/favicon.txt"
         response.headers['Access-Control-Allow-Origin'] = '*'

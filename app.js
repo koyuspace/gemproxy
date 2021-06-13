@@ -83,14 +83,9 @@ $(document).ready(function() {
     $("#check-inlineimg").prop("checked", (localStorage.getItem("inlineimg-enabled") === "true"));
     $("#check-twemoji").prop("checked", (localStorage.getItem("twemoji-enabled") === "true"));
     $("#check-menu").prop("checked", (localStorage.getItem("menu-enabled") === "true"));
-    /* //One up logic (not working right now)
-    var sc2 = $("#addressbar").val().split("/").length - 1;
-    if (sc2 == 3) {
-        var host = $("#addressbar").val().split("gemini://")[1].split("/")[0];
-        $("#oneup").attr("href", "/"+host+"/");
-    } */
     //Proper URL handling
-    $("#content").html($("#content").html().replaceAll("<a href=\"/", "<a href=\""));
+    var host = $("#addressbar").val().split("gemini://")[1].split("/")[0];
+    $("#content").html($("#content").html().replaceAll("<a href=\"/", "<a href=\"/"+host+"/"));
     //Table of Contents
     //Taken from https://medium.com/codefile/an-automatic-table-of-contents-generator-in-javascript-3f56220c9397
     var headers = document.getElementsByTagName("h2");
