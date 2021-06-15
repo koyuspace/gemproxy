@@ -3,7 +3,7 @@ import re
 import ignition
 from markdown import markdown
 from bottle import redirect, route, static_file, response, run, request, template
-import os.path
+import subprocess
 
 rooturl = "//"
 
@@ -49,10 +49,8 @@ def index():
             favico = str(favreq).split("\n")[1]
     except:
         pass
-    head = template("head.tpl")+template("proxyui", favicon=favico)
-    f = open("tail.tpl", "r")
-    tail = f.read()
-    f.close()
+    head = template("head")+template("proxyui", favicon=favico)
+    tail = template("tail", gitid=str(subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])).replace("b'", "").replace("\\n'", ""))
     html = head+html+tail
     return html
 
@@ -100,7 +98,7 @@ def defr(url):
             pass
         try:
             if str(req).split(" ")[0].startswith("1"):
-                return template("input.tpl", input_text=str(req).split(" ")[1].split("\n")[0], gemurl=req.url.replace("gemini://", ""))
+                return template("input", input_text=str(req).split(" ")[1].split("\n")[0], gemurl=req.url.replace("gemini://", ""), gitid=str(subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])).replace("b'", "").replace("\\n'", ""))
         except:
             pass
         try:
@@ -134,10 +132,8 @@ def defr(url):
                     parsedmd += e+"\n"
             parsedmd = parsedmd.replace("``` ", "```\n")
             html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
-            head = template("head.tpl")+template("proxyui", favicon=favico)
-            f = open("tail.tpl", "r")
-            tail = f.read()
-            f.close()
+            head = template("head")+template("proxyui", favicon=favico)
+            tail = template("tail", gitid=str(subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])).replace("b'", "").replace("\\n'", ""))
             html = head+html+tail
             return html
         else:
