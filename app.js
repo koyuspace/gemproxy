@@ -11,9 +11,6 @@ $(document).ready(function() {
     if (localStorage.getItem("menu-enabled") === null) {
         localStorage.setItem("menu-enabled", "false");
     }
-    //Page title
-    var title = $("h1").html();
-    document.title = title+" – "+document.title;
     //Current Gemini URL
     var gemurl = location.href.split("/")[3];
     var slashcount = location.href.split("/").length - 1;
@@ -119,6 +116,12 @@ $(document).ready(function() {
     if (widgetcount === 0) {
         $("#widgets").hide();
     }
+    //Page title
+    var title = $("h1").html();
+    if (title === undefined) {
+        var title = $("#addressbar").val().split("gemini://")[1].split("/")[0];
+    }
+    document.title = title+" – "+document.title;
     //Scroll to page after menu has been loaded
     window.setTimeout(function() {
         try {
