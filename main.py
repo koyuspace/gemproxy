@@ -74,7 +74,7 @@ def defr(url):
         rooturl = "//"
         try:
             req = ignition.request(rooturl+url)
-            if str(req).split(" ")[0].startswith("5"):
+            if str(req).split(" ")[0].startswith("5") or str(req).split(" ")[0].startswith("0") or str(req).split(" ")[0].startswith("4"):
                 error = True
                 favico = "⚠️"
                 head = template("head")+template("proxyui", favicon=favico)
