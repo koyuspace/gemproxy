@@ -41,7 +41,7 @@ def index():
         except:
             emptylink = True
         if e.startswith("=>") and not emptylink:
-            link = e.replace("=> ", "").split(" ")[0]
+            link = e.replace("=> ", "").split(" ")[0].replace("=>", "")
             text = " ".join(e.replace("=> ", "").split(" ")[1:])
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
@@ -143,7 +143,7 @@ def defr(url):
                 except:
                     emptylink = True
                 if e.startswith("=>") and not emptylink:
-                    link = e.replace("=> ", "").split(" ")[0]
+                    link = e.replace("=> ", "").split(" ")[0].replace("=>", "")
                     text = " ".join(e.replace("=> ", "").split(" ")[1:])
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
