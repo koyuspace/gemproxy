@@ -33,14 +33,25 @@ def index():
     lines = body.split("\n")
     parsedmd = ""
     for e in lines:
-        if e.startswith("=>"):
+        emptylink = False
+        try:
+            x = " ".join(e.replace("=> ", "").split(" ")[1:])
+            if x == "":
+                emptylink = True
+        except:
+            emptylink = True
+        if e.startswith("=>") and not emptylink:
             link = e.replace("=> ", "").split(" ")[0]
             text = " ".join(e.replace("=> ", "").split(" ")[1:])
             parsedmd += "["+text+"]("+link+")"+"\n"
         else:
-            parsedmd += e+"\n"
+            if e.startswith("=>") and emptylink:
+                link = e.replace("=> ", "").replace("=>", "")
+                parsedmd += "["+link+"]("+link+")"+"\n"
+            else:
+                parsedmd += e+"\n"
     parsedmd = parsedmd.replace("``` ", "```\n")
-    html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
+    html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("href=\"gemini://", "href=\"//")
     favico = "📄"
     try:
         favurl = "//geminispace.info/favicon.txt"
@@ -124,14 +135,25 @@ def defr(url):
             lines = body.split("\n")
             parsedmd = ""
             for e in lines:
-                if e.startswith("=>"):
+                emptylink = False
+                try:
+                    x = " ".join(e.replace("=> ", "").split(" ")[1:])
+                    if x == "":
+                        emptylink = True
+                except:
+                    emptylink = True
+                if e.startswith("=>") and not emptylink:
                     link = e.replace("=> ", "").split(" ")[0]
                     text = " ".join(e.replace("=> ", "").split(" ")[1:])
                     parsedmd += "["+text+"]("+link+")"+"\n"
                 else:
-                    parsedmd += e+"\n"
+                    if e.startswith("=>") and emptylink:
+                        link = e.replace("=> ", "").replace("=>", "")
+                        parsedmd += "["+link+"]("+link+")"+"\n"
+                    else:
+                        parsedmd += e+"\n"
             parsedmd = parsedmd.replace("``` ", "```\n")
-            html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("gemini://", "//")
+            html = str(markdown(parsedmd, extensions=['fenced_code'])).replace("href=\"gemini://", "href=\"//")
             head = template("head")+template("proxyui", favicon=favico)
             tail = template("tail", gitid=str(subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])).replace("b'", "").replace("\\n'", ""))
             html = head+html+tail
