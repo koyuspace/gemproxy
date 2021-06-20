@@ -21,10 +21,6 @@ $(document).ready(function() {
     }
     $("#gemurl").attr("href", $("#addressbar").val());
     $("#gemurl").html($("#addressbar").val());
-    //Parse Twemoji
-    if (localStorage.getItem("twemoji-enabled") === "true") {
-        $("body").html(twemoji.parse($("body").html()));
-    }
     //Open http links in new tab
     $("body").html($("body").html().replaceAll("href=\"https://", "target=\"_blank\" href=\"https://"));
     //Display inline-images
@@ -122,6 +118,11 @@ $(document).ready(function() {
         var title = $("#addressbar").val().split("gemini://")[1].split("/")[0];
     }
     document.title = title+" – "+document.title;
+    //Parse Twemoji
+    if (localStorage.getItem("twemoji-enabled") === "true") {
+        $("#content").html(twemoji.parse($("#content").html()));
+        $("#favicon").html(twemoji.parse($("#favicon").html()));
+    }
     //Scroll to page after menu has been loaded
     window.setTimeout(function() {
         try {
