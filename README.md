@@ -1,6 +1,6 @@
 # GemProxy
 
-GemProxy is a simple and stylish web proxy for the [Gemini network](gemini.circumlunar.space) primarily written in Bottle and JavaScript. It's easy to use and also self-hostable.
+GemProxy is a simple and stylish web proxy for the [Gemini network](https://gemini.circumlunar.space) primarily written in Bottle and JavaScript. It's easy to use and also self-hostable.
 
 ## Installation
 
