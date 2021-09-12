@@ -125,7 +125,7 @@ def defr(url):
                 images = [".jpg", ".png", ".gif", ".ico"]
                 for i in images:
                     if i in str(req.url):
-                        mime = "image/"+url.split(".")[1]
+                        mime = "image/"+url.split(".")[:1]
                 try:
                     if "ods" in str(req.url) and not mime.startswith("image/"):
                         mime = "application/vnd.oasis.opendocument.spreadsheet"
@@ -174,7 +174,7 @@ def defr(url):
                     return req.raw_body
                 else:
                     if mime != "error":
-                        response.content_type = mime
+                        response.content_type = mime.replace("\r", "")
                         return req.raw_body
 
 run(host="127.0.0.1", port=1970, server="tornado")

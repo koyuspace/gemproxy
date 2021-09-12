@@ -26,7 +26,7 @@ $(document).ready(function() {
     //Display inline-images
     if (localStorage.getItem("inlineimg-enabled") === "true") {
         $('a[href*=".jpg"]').each(function() {
-            $(this).html("<img src=\""+$(this).attr("href")+"\" width=\"300\">");
+            $(this).html("<img src=\""+$(this).attr("href").replace("//", "/")+"\" width=\"300\">");
             $(this).attr("target", "_blank");
         });
         $('a[href*=".png"]').each(function() {
@@ -35,7 +35,7 @@ $(document).ready(function() {
             if ($(this).attr("href") === "me.png") {
                 width = 200;
             }
-            $(this).html("<img src=\""+$(this).attr("href")+"\" width=\""+width+"\" alt=\""+$(this).html()+"\" title=\""+$(this).html()+"\">");
+            $(this).html("<img src=\""+$(this).attr("href").replace("//", "/")+"\" width=\""+width+"\" alt=\""+$(this).html()+"\" title=\""+$(this).html()+"\">");
             $(this).attr("target", "_blank");
         });
     }
