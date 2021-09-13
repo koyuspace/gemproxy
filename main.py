@@ -170,7 +170,7 @@ def defr(url):
                     try:
                         response.content_type = mime+";charset=utf-8"
                     except:
-                        pass
+                        response.content_type = "text/plain;charset=utf-8"
                     return req.raw_body
                 else:
                     if mime != "error":
