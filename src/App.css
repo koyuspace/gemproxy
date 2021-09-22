@@ -1,0 +1,121 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #223;
+  color: #ccc;
+  font-family: monospace;
+  font-size: 10pt;
+  padding: 10px;
+  padding-top: 20px !important;
+  overflow-x: hidden;
+}
+
+#content {
+  background: #223;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+img:not(img[class="emoji"]) {
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+hr {
+  margin-top: 20px;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+}
+
+a, a:visited {
+  color: #ccc;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.emoji {
+  width: 16px !important;
+  height: 16px !important;
+  vertical-align: middle !important;
+}
+
+code > p {
+  margin: 0;
+  line-height: 0;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+
+a:hover {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+#content {
+  word-wrap: break-word;
+}
+
+h2 {
+  margin-top: 60px;
+  margin-bottom: 0;
+  font-weight: bold;
+  background: #ccc;
+  color: #223;
+  max-width: 250px;
+  padding: 8px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.published {
+  margin-top: -13px;
+  padding-bottom: 10px;
+  font-size: 8pt;
+}
+
+#proxyui {
+  display: inline-flex;
+  padding-left: 16px;
+}
+
+#favicon {
+  padding-right: 6px;
+}
+
+#addressbar {
+  width: 60vw !important;
+}
+
+@media(min-width:1600px) {
+  body {
+    width: 60%;
+    position: relative;
+    margin: 0 auto;
+    background-position: bottom right;
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  #widgets {
+    float: left;
+    position: absolute;
+    width: 250px;
+    margin-left: -310px;
+    top: 20px;
+  }
+}
+
+@media(max-width:1600px) {
+  #widgets {
+    margin-top: 20px;
+  }
+}

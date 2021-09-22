@@ -1,0 +1,15 @@
+server {
+	root /var/www/gemproxy/build/;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name example.com;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	
+	location /get/ {
+		proxy_pass http://localhost:1970;
+	}
+}
