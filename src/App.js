@@ -107,7 +107,7 @@ export default class App extends React.Component {
         }
         $("#content").html(twemoji.parse($("#content").html()));
         if ($("h1").html() !== undefined) {
-          document.title = $("h1").html()+" - Gemproxy";
+          document.title = $("h1").html()+" - GemProxy";
         }
       });
     } else {
