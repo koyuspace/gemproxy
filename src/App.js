@@ -15,7 +15,7 @@ export default class App extends React.Component {
       $("#git-id").html(data);
     });
     $.ajax({
-      url: config.backend+"check",
+      url: config.backend+"api/v1/check",
       success: function() {
         $("#gitid").show();
         $("#proxiedfrom").show();
