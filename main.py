@@ -16,7 +16,7 @@ def check():
     response.headers['Access-Control-Allow-Origin'] = '*'
     return "OK"
 
-@route("/api/v1/<url:re:.+>")
+@route("/api/v1/get/<url:re:.+>")
 def defr(url):
     req = ignition.request(rooturl+url.replace("$", "?"))
     response.headers['Access-Control-Allow-Origin'] = '*'
