@@ -121,6 +121,15 @@ export default class App extends React.Component {
           $.get(config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$"), function(cnt) {
             $.get("/input.html", function(data) {
               $("#content").html(data.replaceAll("%title%", cnt.replaceAll("$$$input$$$ ", "").replaceAll("$$$input$$$", "")));
+              $("#inputtext").focus();
+              $("#inputtext").keypress((e) => {
+                  if (e.which === 13) {
+                      if ($("#inputtext").val().replaceAll(" ", "") !== "") {
+                          window.location.href = window.location.href+"?"+$("#inputtext").val();
+                          e.preventDefault();
+                      }
+                  }
+              });
             });
           });
         }
@@ -142,18 +151,6 @@ export default class App extends React.Component {
           }
       }
     })
-    //Input handler
-    window.setTimeout(() => {
-      $("#inputtext").focus();
-      $("#inputtext").keypress((e) => {
-          if (e.which === 13) {
-              if ($("#inputtext").val().replaceAll(" ", "") !== "") {
-                  window.location.href = window.location.href+"?"+$("#inputtext").val();
-                  e.preventDefault();
-              }
-          }
-      });
-    }, 500);
   }
 
   render() {
