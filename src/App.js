@@ -86,10 +86,10 @@ export default class App extends React.Component {
             if ($(this).html().includes("_right")) {
               styles = "float:right;padding:5px;";
             }
-            var imguri = config.backend+"get/"+$(this).attr("href").replace("//", "/");
+            var imguri = config.backend+"api/v1/get/"+$(this).attr("href").replace("//", "/");
             imguri = imguri.replaceAll("/gemini:/", "").replaceAll("//", "/").replaceAll(":/", "://");
-            if (!imguri.replaceAll(config.backend+"get/", "").includes("/")) {
-              imguri = config.backend+"get/"+cwd+"/"+imguri.replaceAll(config.backend+"get/", "");
+            if (!imguri.replaceAll(config.backend+"api/v1/get/", "").includes("/")) {
+              imguri = config.backend+"api/v1/get/"+cwd+"/"+imguri.replaceAll(config.backend+"api/v1/get/", "");
             }
             $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
             $(this).attr("target", "_blank");
@@ -107,10 +107,10 @@ export default class App extends React.Component {
             if ($(this).html().includes("_right")) {
               styles = "float:right;padding:5px;";
             }
-            var imguri = config.backend+"get/"+$(this).attr("href").replace("//", "/");
+            var imguri = config.backend+"api/v1/get/"+$(this).attr("href").replace("//", "/");
             imguri = imguri.replaceAll("/gemini:/", "").replaceAll("//", "/").replaceAll(":/", "://");
-            if (!imguri.replaceAll(config.backend+"get/", "").includes("/")) {
-              imguri = config.backend+"get/"+cwd+"/"+imguri.replaceAll(config.backend+"get/", "");
+            if (!imguri.replaceAll(config.backend+"api/v1/get/", "").includes("/")) {
+              imguri = config.backend+"api/v1/get/"+cwd+"/"+imguri.replaceAll(config.backend+"api/v1/get/", "");
             }
             $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
             $(this).attr("target", "_blank");
@@ -139,7 +139,7 @@ export default class App extends React.Component {
         }
       });
     } else {
-      $("html").html("<img src=\""+config.backend+"get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")+"\">");
+      $("html").html("<img src=\""+config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")+"\">");
     }
     //Address bar handler
     $("#addressbar").keypress((e) => {
