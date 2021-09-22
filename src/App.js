@@ -11,7 +11,7 @@ const render = require('gemini-to-html/render')
 export default class App extends React.Component {
   componentDidMount() {
     //Git info
-    $.get(config.backend+"gitid", function(data) {
+    $.get(config.backend+"api/v1/gitid", function(data) {
       $("#git-id").html(data);
     });
     $.ajax({
@@ -48,7 +48,7 @@ export default class App extends React.Component {
     $("#gemurl").attr("href", $("#addressbar").val());
     $("#gemurl").html($("#addressbar").val());
     if (!$("#addressbar").val().replaceAll("gemini://", "").includes(".jpg") && !$("#addressbar").val().replaceAll("gemini://", "").includes(".png")) {
-      $.get(config.backend+"get/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/favicon.txt", function(data) {
+      $.get(config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/favicon.txt", function(data) {
         $("#gitid").show();
         $("#proxiedfrom").show();
         $("#content").removeAttr("style");
@@ -57,7 +57,7 @@ export default class App extends React.Component {
           $("#favicon").html(twemoji.parse($("#favicon").html()));
         }
       });
-      $.get(config.backend+"get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$"), function(data) {
+      $.get(config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$"), function(data) {
         if (!data.startsWith("$$$input$$$")) {
           var parsed = parse(data);
           var content = "";
@@ -118,7 +118,7 @@ export default class App extends React.Component {
             $(this).attr("style", "border:0;");
           });
         } else {
-          $.get(config.backend+"get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$"), function(cnt) {
+          $.get(config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$"), function(cnt) {
             $.get("/input.html", function(data) {
               $("#content").html(data.replaceAll("%title%", cnt.replaceAll("$$$input$$$ ", "").replaceAll("$$$input$$$", "")));
             });

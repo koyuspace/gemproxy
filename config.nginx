@@ -5,19 +5,11 @@ server {
 
 	server_name example.com;
 
-	location /gitid {
-		proxy_pass http://localhost:1970;
-	}
-
-	location /check {
-		proxy_pass http://localhost:1970;
-	}
-
 	location / {
 		try_files $uri $uri/ =404;
 	}
 	
-	location /get/ {
+	location /api/v1/ {
 		proxy_pass http://localhost:1970;
 	}
 }

@@ -6,33 +6,17 @@ import subprocess
 
 rooturl = "//"
 
-@route("/style.css")
-def style():
-    return static_file("style.css", root=".")
-
-@route("/favicon.ico")
-def favicon():
-    return static_file("favicon.ico", root=".")
-
-@route("/app.js")
-def appjs():
-    return static_file("app.js", root=".")
-
-@route("/koyu.png")
-def koyupng():
-    return static_file("koyu.png", root=".")
-
 @route("/")
 def index():
     return ""
 
-@route("/check")
+@route("/api/v1/check")
 def check():
     response.content_type = "text/plain"
     response.headers['Access-Control-Allow-Origin'] = '*'
     return "OK"
 
-@route("/get/<url:re:.+>")
+@route("/api/v1/<url:re:.+>")
 def defr(url):
     req = ignition.request(rooturl+url.replace("$", "?"))
     response.headers['Access-Control-Allow-Origin'] = '*'
@@ -53,7 +37,7 @@ def defr(url):
             else:
                 redirect("/get/"+url+"/")
 
-@route("/gitid")
+@route("/api/v1/gitid")
 def gitid():
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.content_type = "text/plain"
