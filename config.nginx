@@ -12,4 +12,7 @@ server {
 	location /get/ {
 		proxy_pass http://localhost:1970;
 	}
+	location /check/ {
+		proxy_pass http://localhost:1970;
+	}
 }

@@ -14,7 +14,7 @@ Afterwards run `main.py` to run the backend.
 
 ### Frontend
 
-Install NodeJS with yarn and run `yarn install` to install the dependencies and `yarn build` to build the frontend. You can also debug the frontend using `yarn start` which will open a browser with auto-reload and error reporting.
+Install NodeJS with yarn and run `yarn install` to install the dependencies. Change the backend variable in `src/config.json` to your needs and run `yarn build` to build the frontend. You can also debug the frontend using `yarn start` which will open a browser with auto-reload and error reporting.
 
 ## Caveats
 

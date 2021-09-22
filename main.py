@@ -24,8 +24,13 @@ def koyupng():
 
 @route("/")
 def index():
-    html = ""
-    return html
+    return ""
+
+@route("/check")
+def check():
+    response.content_type = "text/plain"
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return "OK"
 
 @route("/get/<url:re:.+>")
 def defr(url):

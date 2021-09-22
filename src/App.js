@@ -13,7 +13,24 @@ export default class App extends React.Component {
     //Git info
     $.get(config.backend+"gitid", function(data) {
       $("#git-id").html(data);
-    })
+    });
+    $.ajax({
+      url: config.backend+"check",
+      success: function() {
+        $("#gitid").show();
+        $("#proxiedfrom").show();
+        $("#content").removeAttr("style");
+        $("#header").show();
+      },
+      error: function() {
+        $("#content").html("<h1>Error!</h1>\n<p>The backend server is currently unavailable. Please check back later!</p>\n<p><img src=\"/cat.jpg\" height=\"300\"></p>");
+        $("#content").attr("style", "text-align:center;");
+        $("#gitid").hide();
+        $("#proxiedfrom").hide();
+        $("#header").hide();
+      },
+      timeout: 30000
+    });
     //Current Gemini URL
     var gemurl = window.location.href.split("/")[3];
     var slashcount = window.location.href.split("/").length - 1;
@@ -25,7 +42,6 @@ export default class App extends React.Component {
     if (!$("#addressbar").val().includes(".")) {
       $("#addressbar").val($("#addressbar").val().replaceAll("gemini://", "gemini://geminispace.info/"));
     }
-    console.log($("#addressbar").val().split("/").length);
     if ($("#addressbar").val().split("/").length - 1 < 3) {
       window.location.href = window.location.href+"/";
     }
@@ -33,6 +49,9 @@ export default class App extends React.Component {
     $("#gemurl").html($("#addressbar").val());
     if (!$("#addressbar").val().replaceAll("gemini://", "").includes(".jpg") && !$("#addressbar").val().replaceAll("gemini://", "").includes(".png")) {
       $.get(config.backend+"get/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/favicon.txt", function(data) {
+        $("#gitid").show();
+        $("#proxiedfrom").show();
+        $("#content").removeAttr("style");
         if (!data.includes("# Error ")) {
           $("#favicon").html(data);
           $("#favicon").html(twemoji.parse($("#favicon").html()));
@@ -122,7 +141,7 @@ export default class App extends React.Component {
               e.preventDefault();
           }
       }
-    });
+    })
     //Input handler
     window.setTimeout(() => {
       $("#inputtext").focus();
@@ -140,16 +159,18 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <p><a href=".." id="oneup" style={{marginLeft: "20px"}}>&uarr; One up</a> | <a href="/search" id="search"><i className="fa fa-search" aria-hidden="true"></i> Search</a></p>
-        <div id="proxyui">
-            <span id="favicon"></span><input type="text" id="addressbar" style={{width: "100%"}} autoComplete="off" />
+        <div id="header">
+          <p><a href=".." id="oneup" style={{marginLeft: "20px"}}>&uarr; One up</a> | <a href="/search" id="search"><i className="fa fa-search" aria-hidden="true"></i> Search</a></p>
+          <div id="proxyui">
+              <span id="favicon"></span><input type="text" id="addressbar" style={{width: "100%"}} autoComplete="off" />
+          </div>
         </div>
         <div id="content">
           Loading...
         </div>
         <hr />
-        <p>♊️ Proxied content from <a id="gemurl" href="gemini://geminispace.info">gemini://geminispace.info</a></p>
-        <p>GemProxy v{process.env.REACT_APP_VERSION} (<span id="git-id"></span>) | <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://creapaid.com/koyuspace" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
+        <p id="proxiedfrom">♊️ Proxied content from <a id="gemurl" href="gemini://geminispace.info">gemini://geminispace.info</a></p>
+        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://creapaid.com/koyuspace" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
       </div>
     );
   }
