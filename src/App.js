@@ -76,20 +76,13 @@ export default class App extends React.Component {
           });
           //Display inline-images
           $('a[href*=".jpg"]').each(function() {
-            var cwd = "";
-            if (!$(this).attr("href").replace("//", "/").includes("gemini:/")) {
-              cwd = $("#addressbar").val().split("/");
-              cwd.pop();
-              cwd = cwd.join("/").replace("gemini://", "");
-            }
             var styles = "";
             if ($(this).html().includes("_right")) {
               styles = "float:right;padding:5px;";
             }
-            var imguri = config.backend+"api/v1/get/"+$(this).attr("href").replace("//", "/");
-            imguri = imguri.replaceAll("/gemini:/", "").replaceAll("//", "/").replaceAll(":/", "://");
-            if (!imguri.replaceAll(config.backend+"api/v1/get/", "").includes("/")) {
-              imguri = config.backend+"api/v1/get/"+cwd+"/"+imguri.replaceAll(config.backend+"api/v1/get/", "");
+            var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
+            if (!imguri.includes("/api/v1/get/")) {
+              imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
             }
             $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
             $(this).attr("target", "_blank");
@@ -97,20 +90,13 @@ export default class App extends React.Component {
             $(this).attr("style", "border:0;");
           });
           $('a[href*=".png"]').each(function() {
-            var cwd = "";
-            if (!$(this).attr("href").replace("//", "/").includes("gemini:/")) {
-              cwd = $("#addressbar").val().split("/");
-              cwd.pop();
-              cwd = cwd.join("/").replace("gemini://", "");
-            }
             var styles = "";
             if ($(this).html().includes("_right")) {
               styles = "float:right;padding:5px;";
             }
-            var imguri = config.backend+"api/v1/get/"+$(this).attr("href").replace("//", "/");
-            imguri = imguri.replaceAll("/gemini:/", "").replaceAll("//", "/").replaceAll(":/", "://");
-            if (!imguri.replaceAll(config.backend+"api/v1/get/", "").includes("/")) {
-              imguri = config.backend+"api/v1/get/"+cwd+"/"+imguri.replaceAll(config.backend+"api/v1/get/", "");
+            var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
+            if (!imguri.includes("/api/v1/get/")) {
+              imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
             }
             $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
             $(this).attr("target", "_blank");
