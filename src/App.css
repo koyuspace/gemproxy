@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background: #223;
+  background: #333;
   color: #ccc;
   font-family: monospace;
   font-size: 10pt;
@@ -13,7 +13,7 @@ body {
 }
 
 #content {
-  background: #223;
+  background: #333;
   border-radius: 10px;
   padding: 20px;
 }
@@ -68,7 +68,7 @@ h2 {
   margin-bottom: 0;
   font-weight: bold;
   background: #ccc;
-  color: #223;
+  color: #333;
   max-width: 250px;
   padding: 8px;
   text-align: center;
