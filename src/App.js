@@ -153,7 +153,7 @@ export default class App extends React.Component {
         </div>
         <hr />
         <p id="proxiedfrom">♊️ Proxied content from <a id="gemurl" href="gemini://geminispace.info">gemini://geminispace.info</a></p>
-        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://creapaid.com/koyuspace" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
+        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="hhttps://creators.mstdn.social/koyuspace" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://creapaid.com/koyuspace" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
       </div>
     );
   }
