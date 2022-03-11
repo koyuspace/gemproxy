@@ -61,19 +61,21 @@ export default class App extends React.Component {
         if (!data.startsWith("$$$input$$$")) {
           var parsed = parse(data);
           var content = "";
-          if ($("#addressbar").val().replaceAll("gemini://", "").split("/")[0] !== "geminispace.info") {
+          if ($("#addressbar").val().replaceAll("gemini://", "").split("/")[0] === "geminispace.info") {
             content = render(parsed).replaceAll("href=\"/", "href=\"");
           } else {
-            content = render(parsed);
+            content = render(parsed).replaceAll("href=\"/", "href=\"/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/");
           }
           //Open external links in new tab
           content = content.replaceAll("href=\"https://", "target=\"_blank\" href=\"https://");
           //Output page
           $("#content").html(content);
-          //Parse URLs
-          $('#content a[href*="gemini://"]').each(function() {
-            $(this).attr("href", $(this).attr("href").replaceAll("gemini://", "/"))
-          });
+          window.setTimeout(function() {
+            //Parse URLs
+            $('#content a[href*="gemini://"]').each(function() {
+              $(this).attr("href", $(this).attr("href").replaceAll("gemini://", "/"));
+            });
+          })
           //Display inline-images
           $('a[href*=".jpg"]').each(function() {
             var styles = "";
