@@ -33,7 +33,7 @@ def defr(url):
             return "# Error "+str(req).split("\n")[0].split(" ")[0]+"\n"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
         else:
             if not str(req.raw_body) == "":
-                return "\n".join(str(req).split("\n")[1:]).replace("=> ", "=>").replace("=>", "=> ")
+                return req.raw_body
             else:
                 redirect("/get/"+url+"/")
 
