@@ -20,12 +20,14 @@ def check():
 def defr(url):
     req = ignition.request(rooturl+url.replace("$", "?"))
     response.headers['Access-Control-Allow-Origin'] = '*'
+    isImage = False
     if ".jpg" in url or ".png" in url or "favicon.txt" in url:
         response.headers["Cache-Control"] = "public, max-age=604800"
     images = [".jpg", ".png", ".gif", ".ico"]
     for i in images:
         if i in str(req.url):
             response.content_type = "image/"+str(req.url.split(".")[1:][1])
+            isImage = True
     if str(req).split(" ")[0].startswith("1"):
         return "$$$input$$$"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
     else:
@@ -33,7 +35,10 @@ def defr(url):
             return "# Error "+str(req).split("\n")[0].split(" ")[0]+"\n"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
         else:
             if not str(req.raw_body) == "":
-                return req.raw_body
+                if isImage:
+                    return req.raw_body
+                else:
+                    return "\n".join(str(req).split("\n")[1:]).replace("=> ", "=>").replace("=>", "=> ")
             else:
                 redirect("/get/"+url+"/")
 
