@@ -37,10 +37,10 @@ export default class App extends React.Component {
     if (slashcount > 2) {
         $("#addressbar").attr("value", "gemini:/"+window.location.href.replaceAll(window.location.protocol+"//"+window.location.host, ""));
     } else {
-        $("#addressbar").attr("value", "gemini://geminispace.info/"+gemurl);
+        $("#addressbar").attr("value", "gemini://tlgs.one/"+gemurl);
     }
     if (!$("#addressbar").val().includes(".")) {
-      $("#addressbar").val($("#addressbar").val().replaceAll("gemini://", "gemini://geminispace.info/"));
+      $("#addressbar").val($("#addressbar").val().replaceAll("gemini://", "gemini://tlgs.one/"));
     }
     if ($("#addressbar").val().split("/").length - 1 < 3) {
       window.location.href = window.location.href+"/";
@@ -61,7 +61,7 @@ export default class App extends React.Component {
         if (!data.startsWith("$$$input$$$")) {
           var parsed = parse(data);
           var content = "";
-          if ($("#addressbar").val().replaceAll("gemini://", "").split("/")[0] === "geminispace.info") {
+          if ($("#addressbar").val().replaceAll("gemini://", "").split("/")[0] === "tlgs.one") {
             content = render(parsed).replaceAll("href=\"/", "href=\"");
           } else {
             content = render(parsed).replaceAll("href=\"/", "href=\"/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/");
@@ -154,8 +154,8 @@ export default class App extends React.Component {
           Loading...
         </div>
         <hr />
-        <p id="proxiedfrom">♊️ Proxied content from <a id="gemurl" href="gemini://geminispace.info">gemini://geminispace.info</a></p>
-        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://liberapay.com/bubblineyuri/" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
+        <p id="proxiedfrom">♊️ Proxied content from <a id="gemurl" href="gemini://tlgs.one">gemini://tlgs.one</a></p>
+        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://hub.koyu.space/donate/" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
       </div>
     );
   }
