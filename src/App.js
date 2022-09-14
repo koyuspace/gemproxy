@@ -155,7 +155,7 @@ export default class App extends React.Component {
         </div>
         <hr />
         <p id="proxiedfrom">♊️ Proxied content from <a id="gemurl" href="gemini://tlgs.one">gemini://tlgs.one</a></p>
-        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://hub.koyu.space/donate/" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
+        <p>GemProxy v{process.env.REACT_APP_VERSION} <span id="gitid">(<span id="git-id"></span>) </span>| <a href="https://github.com/koyuspace/gemproxy" target="_blank" rel="noreferrer"><i className="fa fa-github" aria-hidden="true"></i> Source code</a> | <a href="https://koyu.space/donate/" target="_blank" rel="noreferrer"><i className="fa fa-heart" aria-hidden="true"></i> Donate</a></p>
       </div>
     );
   }
