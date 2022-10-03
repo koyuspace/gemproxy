@@ -1,5 +1,4 @@
 #!/bin/python3
-import re
 import ignition
 from bottle import redirect, route, static_file, response, run
 import subprocess
