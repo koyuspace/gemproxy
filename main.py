@@ -1,7 +1,7 @@
 #!/bin/python3
 import re
 import ignition
-from bottle import redirect, route, static_file, response, run
+from bottle import redirect, route, response, run
 import subprocess
 
 rooturl = "//"
