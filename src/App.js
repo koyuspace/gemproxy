@@ -78,43 +78,43 @@ export default class App extends React.Component {
           })
           //Display inline-images
           $('a[href*=".jpg"]').each(function() {
-            var styles = "";
+            var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles = "float:right;padding:5px;";
+              styles += "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
               imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
             }
-            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
+            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\">");
             $(this).attr("target", "_blank");
             $(this).attr("href", imguri);
             $(this).attr("style", "border:0;");
           });
           $('a[href*=".jpeg"]').each(function() {
-            var styles = "";
+            var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles = "float:right;padding:5px;";
+              styles += "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
               imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
             }
-            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
+            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\">");
             $(this).attr("target", "_blank");
             $(this).attr("href", imguri);
             $(this).attr("style", "border:0;");
           });
           $('a[href*=".png"]').each(function() {
-            var styles = "";
+            var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles = "float:right;padding:5px;";
+              styles += "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
               imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
             }
-            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
+            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\">");
             $(this).attr("target", "_blank");
             $(this).attr("href", imguri);
             $(this).attr("style", "border:0;");
