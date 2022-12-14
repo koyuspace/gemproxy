@@ -33,13 +33,17 @@ def defr(url):
         if str(req).split(" ")[0].startswith("5") or str(req).split(" ")[0].startswith("0") or str(req).split(" ")[0].startswith("4"):
             return "# Error "+str(req).split("\n")[0].split(" ")[0]+"\n"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
         else:
-            if not str(req.raw_body) == "":
-                if isImage:
-                    return req.raw_body
+            robots = req = ignition.request(rooturl+url.replace("$", "?").split("/")[0]+"/robots.txt")
+            if not str(req.raw_body).includes("Disallow"):
+                if not str(req.raw_body) == "":
+                    if isImage:
+                        return req.raw_body
+                    else:
+                        return "\n".join(str(req).split("\n")[1:]).replace("=> ", "=>").replace("=>", "=> ")
                 else:
-                    return "\n".join(str(req).split("\n")[1:]).replace("=> ", "=>").replace("=>", "=> ")
+                    redirect("/get/"+url+"/")
             else:
-                redirect("/get/"+url+"/")
+                return "# Error\nThis capsule has requested not to be accessed through a Gemini proxy via the robots.txt file."
 
 @route("/api/v1/gitid")
 def gitid():
