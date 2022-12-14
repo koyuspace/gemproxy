@@ -159,7 +159,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <div id="header">
-          <p><a href=".." id="oneup" style={{marginLeft: "20px"}}>&uarr; One up</a> | <a href="/search" id="search"><i className="fa fa-search" aria-hidden="true"></i> Search</a></p>
+          <p><a href=".." id="oneup" style={{marginLeft: "20px"}}>&uarr; One up</a></p>
           <div id="proxyui">
               <span id="favicon"></span><input type="text" id="addressbar" style={{width: "100%"}} autoComplete="off" />
           </div>
