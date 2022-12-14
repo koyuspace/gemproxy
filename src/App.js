@@ -47,7 +47,7 @@ export default class App extends React.Component {
     }
     $("#gemurl").attr("href", $("#addressbar").val());
     $("#gemurl").html($("#addressbar").val());
-    if (!$("#addressbar").val().replaceAll("gemini://", "").includes(".jpg") && !$("#addressbar").val().replaceAll("gemini://", "").includes(".png")) {
+    if (!$("#addressbar").val().replaceAll("gemini://", "").includes(".jpg") && !$("#addressbar").val().replaceAll("gemini://", "").includes(".png") && !$("#addressbar").val().replaceAll("gemini://", "").includes(".jpeg")) {
       $.get(config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").split("/")[0]+"/favicon.txt", function(data) {
         $("#gitid").show();
         $("#proxiedfrom").show();
@@ -78,6 +78,20 @@ export default class App extends React.Component {
           })
           //Display inline-images
           $('a[href*=".jpg"]').each(function() {
+            var styles = "";
+            if ($(this).html().includes("_right")) {
+              styles = "float:right;padding:5px;";
+            }
+            var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
+            if (!imguri.includes("/api/v1/get/")) {
+              imguri = imguri.replaceAll(config.backend, config.backend+"api/v1/get/");
+            }
+            $(this).html("<img src=\""+imguri+"\" style=\""+styles+"\" width=\"300\">");
+            $(this).attr("target", "_blank");
+            $(this).attr("href", imguri);
+            $(this).attr("style", "border:0;");
+          });
+          $('a[href*=".jpeg"]').each(function() {
             var styles = "";
             if ($(this).html().includes("_right")) {
               styles = "float:right;padding:5px;";
