@@ -22,7 +22,7 @@ def defr(url):
     isImage = False
     if ".jpg" in url or ".png" in url or "favicon.txt" in url:
         response.headers["Cache-Control"] = "public, max-age=604800"
-    images = [".jpg", ".png", ".gif", ".ico"]
+    images = [".jpg", ".png", ".gif", ".ico", ".jpeg"]
     for i in images:
         if i in str(req.url):
             response.content_type = "image/"+str(req.url.split(".")[1:][1])
