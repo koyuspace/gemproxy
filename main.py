@@ -33,7 +33,7 @@ def defr(url):
         if str(req).split(" ")[0].startswith("5") or str(req).split(" ")[0].startswith("0") or str(req).split(" ")[0].startswith("4"):
             return "# Error "+str(req).split("\n")[0].split(" ")[0]+"\n"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
         else:
-            robots = req = ignition.request(rooturl+url.replace("$", "?").split("/")[0]+"/robots.txt")
+            robots = ignition.request(rooturl+url.replace("$", "?").split("/")[0]+"/robots.txt")
             if not "Disallow" in str(robots.raw_body):
                 if not str(req.raw_body) == "":
                     if isImage:
