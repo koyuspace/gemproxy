@@ -34,6 +34,9 @@ export default class App extends React.Component {
     //Current Gemini URL
     var gemurl = window.location.href.split("/")[3];
     var slashcount = window.location.href.split("/").length - 1;
+    if (slashcount === 3) {
+      window.location.href = "/koyu.space/";
+    }
     if (slashcount > 2) {
         $("#addressbar").attr("value", "gemini:/"+window.location.href.replaceAll(window.location.protocol+"//"+window.location.host, ""));
     } else {
@@ -159,7 +162,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <div id="header">
-          <p><a href=".." id="oneup" style={{marginLeft: "20px"}}>&uarr; One up</a></p>
+          <p><a href="javascript:history.back()" id="back" style={{marginLeft: "20px"}}>&larr; Back</a> | <a href=".." id="oneup">&uarr; One up</a></p>
           <div id="proxyui">
               <span id="favicon"></span><input type="text" id="addressbar" style={{width: "100%"}} autoComplete="off" />
           </div>
