@@ -80,7 +80,7 @@ export default class App extends React.Component {
           $('a[href*=".jpg"]').each(function() {
             var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles += "float:right;padding:5px;";
+              styles = "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
@@ -94,7 +94,7 @@ export default class App extends React.Component {
           $('a[href*=".jpeg"]').each(function() {
             var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles += "float:right;padding:5px;";
+              styles = "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
@@ -108,7 +108,7 @@ export default class App extends React.Component {
           $('a[href*=".png"]').each(function() {
             var styles = "width:100%";
             if ($(this).html().includes("_right")) {
-              styles += "float:right;padding:5px;";
+              styles = "float:right;padding:5px;";
             }
             var imguri = new URL($(this).attr("href"), config.backend+"api/v1/get/"+$("#addressbar").val().replaceAll("gemini://", "").replaceAll("?", "$")).href;
             if (!imguri.includes("/api/v1/get/")) {
