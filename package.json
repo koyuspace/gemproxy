@@ -1,9 +1,9 @@
 {
   "name": "gemproxy",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^6.0.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "gemini-to-html": "^2.1.0",

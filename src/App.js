@@ -6,7 +6,7 @@ import twemoji from 'twemoji';
 
 const parse = require('gemini-to-html/parse')
 const render = require('gemini-to-html/render')
-
+const contentCss = "<style>#content { width: 60%; margin: 0 auto; display: block; }</style>";
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -73,6 +73,7 @@ export default class App extends React.Component {
           content = content.replaceAll("href=\"https://", "target=\"_blank\" href=\"https://");
           //Output page
           $("#content").html(content);
+          $("head").append(contentCss);
           window.setTimeout(function() {
             //Parse URLs
             $('#content a[href*="gemini://"]').each(function() {
