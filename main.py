@@ -2,6 +2,7 @@
 import ignition
 from bottle import redirect, route, response, run
 import subprocess
+from protego import Protego
 
 rooturl = "//"
 
@@ -34,7 +35,8 @@ def defr(url):
             return "# Error "+str(req).split("\n")[0].split(" ")[0]+"\n"+str(req).split("\n")[0].replace(str(req).split("\n")[0].split(" ")[0], "")
         else:
             robots = ignition.request(rooturl+url.replace("$", "?").split("/")[0]+"/robots.txt")
-            if not "Disallow" in str(robots.raw_body):
+            rp = Protego.parse(str(robots.raw_body).replace("\\n", "\n").replace("b'", "").replace("'", ""))
+            if rp.can_fetch(rooturl+url.replace("$", "?"), rooturl+url.replace("$", "?")):
                 if not str(req.raw_body) == "":
                     if isImage:
                         return req.raw_body
